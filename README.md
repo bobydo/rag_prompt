@@ -19,39 +19,29 @@ This project demonstrates in-context learning and prompt engineering techniques 
    ```powershell
    python main.py
    ```
-## Dev vs Prod management (LCEL)
-- `service/langchain_ollama_service.py`: Integrates LangChain's pipe (`|`) chaining with Ollama as the backend. Example usage:
-   ```python
-   from service.langchain_ollama_service import joke_chain
-   response = joke_chain.invoke({"adjective": "funny", "content": "chickens"})
-   print(response)
-   ```
 
-- `lab/chain_factory.py`: Factory for creating LangChain chains using prompt templates and Ollama as backend. Use `make_chain(key, version, model)` to build a chain from registered prompts. Example:
-   ```python
-   chain = make_chain("summarizer")
-   chain.invoke({"text": "..."})
-   ```
+## The purpose of every file under Lab folder
 
-- `app_llm.py`: Example app for using registered prompts and LLMService. Renders prompts from registry and generates responses with Ollama. Example:
-   ```python
-   prompt = reg.render("summarizer", {"text": "Write a concise summary of LangChain."})
-   result = llm.generate(prompt)
+### Classification
+- `classify.py`: True/false classification prompt.
+- `few_shot.py`: Few-shot emotion classification.
+- `one_shot.py`: One-shot learning for email writing and concept simplification.
 
-- `service/prompt_registry.py`: Registry and backend for managing prompt templates. Supports file system (FSBackend) for development and database (DBBackend) for production. Use `PromptRegistry` to fetch and render prompts by key and version. Example:
-   ```python
-   reg = PromptRegistry(FSBackend("prompts"))
-   prompt = reg.render("summarizer", {"text": "Write a summary."})
-   ```
+### Chain of thought
+- `chain_of_thought.py`: Chain-of-thought reasoning for math, decision-making, and process explanation.
+- `self_consistency.py`: Self-consistency reasoning for reliable answers.
 
-- `service/ollama_expression_service.py`: Provides functions for formatting prompts and generating responses using Ollama as the backend. Use `format_prompt` for prompt composition and `generate_response` to get model output.
+### Langchain expression language (LCEL)
+- `lcel_summarize.py`: Summarize content in one sentence.
+- `lcel_summarize_test.py`: Test file for summarization.
+- `lcel_text_classfication.py`: LCEL-based text classification.
+- `lcel_qa_test.py`: LCEL-based question answering.
+- `lcel_code_generation.py`: SQL query generation from natural language.
+- `lcel_custom_format.py`: Product review analysis for sentiment, features, and summary.
+- `chain_factory.py`: Factory for creating LangChain chains from prompt templates.
+- `langchain_expression_language.py`: LCEL workflow composition and reliability.
 
-- `service/ollama_joke_chain_service.py`: Implements a chain-like workflow for joke generation. Chains prompt formatting, LLM response, and output parsing. Use `joke_chain(template, variables, params)` to run the chain.
+### Miscellaneous
+- `wind.py`: Simple wind response prompt.
 
-- `service/langchain_ollama_service.py`: Integrates LangChain's pipe (`|`) chaining with Ollama as the backend. Example usage:
-   ```python
-   from service.langchain_ollama_service import joke_chain
-   response = joke_chain.invoke({"adjective": "funny", "content": "chickens"})
-   print(response)
-   ```
 

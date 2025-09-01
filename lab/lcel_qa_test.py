@@ -32,4 +32,4 @@ def lcel_qa_test():
     )
 
     answer = qa_chain.invoke({"question": question, "content": content})
-    print(answer)
+    print(f"Answer the {question} based on the {content}.\n\nAnswer:\n{answer}")

@@ -1,3 +1,4 @@
+from lab.lcel_code_generation import lcel_code_generation
 from service.llm_service import LLMService
 from lab.wind import get_wind_response
 from lab.classify import classify_eiffel_tower
@@ -9,6 +10,8 @@ from lab.self_consistency import self_consistency
 from lab.langchain_expression_language import LCEL
 from lab.lcel_summarize import content_to_summarize
 from lab.lcel_qa_test import lcel_qa_test
+from lab.lcel_text_classfication import lcel_text_classfication
+from lab.lcel_custom_format import lcel_custom_format
 
 # zero and few shots examples
 prompts = [
@@ -35,7 +38,12 @@ if __name__ == "__main__":
     #response = joke_chain.invoke({"adjective": "sad", "content": "fish"})
     #print(response)
     #content_to_summarize()
-    lcel_qa_test()
+    #lcel_qa_test()
+    #lcel_text_classfication()
+    #lcel_code_generation()
+    lcel_custom_format()
+    
+
 
 
 
