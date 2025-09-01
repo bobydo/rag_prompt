@@ -1,4 +1,5 @@
 import requests, json
+from config import get_params
 
 class OllamaLLM:
     def __init__(self, model, host):
@@ -8,9 +9,13 @@ class OllamaLLM:
 class LLMService:
     def __init__(self, model="llama3", host="http://localhost:11434"):
         self.ollama_llm = OllamaLLM(model=model, host=host)
+        self.params = get_params()
     def generate(self, prompt: str, params=None) -> str:
         buf = []
         payload = {"model": self.ollama_llm.model, "prompt": prompt, "stream": True}
+        # Use default params from config if not provided
+        if params is None:
+            params = self.params
         try:
             if params:
                 payload.update(params)
